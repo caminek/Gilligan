@@ -1,7 +1,7 @@
 # Gilligan
 
-![GitHub](https://img.shields.io/github/license/caminek/Gilligan)
-![Travis (.org)](https://img.shields.io/travis/caminek/Gilligan)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![Travis (.org)](https://travis-ci.org/caminek/Gilligan.svg?branch=master)
 ![AppVeyor](https://ci.appveyor.com/api/projects/status/github/caminek/Gilligan?branch=master&svg=true)
 
 Tested on:
