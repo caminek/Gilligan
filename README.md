@@ -5,7 +5,8 @@
 ![AppVeyor](https://ci.appveyor.com/api/projects/status/github/caminek/Gilligan?branch=master&svg=true)
 
 Tested on:
-- Ubuntu 16.04 LTS (Xenial Xerus) with gcc 5.4.0, Qt 5.6 and higher
+- Ubuntu 16.04 LTS (Xenial Xerus) with gcc 5.4.0 and Qt 5.6 and higher
+- Ubuntu 18.04 LTS (Bionic Beaver) with gcc 7.4.0 and Qt 5.11 and higher
 - OS X with Apple LLVM version 9.1.0 (clang-902.0.39.2) and Qt 5.13
 - Windows 7, 8, and 10 with MinGW 4.8.2 and higher, and Qt 5.3 and higher
 

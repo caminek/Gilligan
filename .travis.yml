@@ -2,54 +2,47 @@ language: cpp
 
 matrix:
  include:
+  # Ubuntu 16.04 LTS (Xenial Xerus)
   - os: linux
     dist: xenial
     sudo: required
     compiler: gcc
     env:
-     - QT_BASE=56 USE_CMAKE=true
+      - QT_BASE=56 USE_CMAKE=true
   - os: linux
     dist: xenial
     sudo: required
     compiler: gcc
     env:
-     - QT_BASE=57 USE_CMAKE=true
+      - QT_BASE=57 USE_CMAKE=true
   - os: linux
     dist: xenial
     sudo: required
     compiler: gcc
     env:
-     - QT_BASE=58 USE_CMAKE=true
+      - QT_BASE=58 USE_CMAKE=true
   - os: linux
     dist: xenial
     sudo: required
     compiler: gcc
     env:
-     - QT_BASE=59 USE_CMAKE=true
+      - QT_BASE=59 USE_CMAKE=true
   - os: linux
     dist: xenial
     sudo: required
     compiler: gcc
     env:
-     - QT_BASE=510 USE_CMAKE=true
+      - QT_BASE=510 USE_CMAKE=true
   - os: linux
     dist: xenial
     compiler: gcc
     env:
-     - QT_BASE=511
+      - QT_BASE=511
   - os: linux
     dist: xenial
     compiler: gcc
     env:
-     - QT_BASE=511 USE_CMAKE=true
-  #- os: osx
-  #  compiler: clang
-  #  env:
-  #   - QT_BASE=511
-  #- os: osx
-  #  compiler: clang
-  #  env:
-  #   - QT_BASE=511 USE_CMAKE=true
+      - QT_BASE=511 USE_CMAKE=true
   - os: linux
     dist: xenial
     compiler: gcc
@@ -59,7 +52,39 @@ matrix:
     dist: xenial
     compiler: gcc
     env:
-    - QT_BASE=512 USE_CMAKE=true
+      - QT_BASE=512 USE_CMAKE=true
+
+  # Ubuntu 18.04 LTS (Bionic Beaver)
+  - os: linux
+    dist: bionic
+    compiler: gcc
+    env: 
+      - QT_BASE=511
+  - os: linux
+    dist: bionic
+    compiler: gcc
+    env:
+      - QT_BASE=511 USE_CMAKE=true
+  - os: linux
+    dist: bionic
+    compiler: gcc
+    env:
+      - QT_BASE=512
+  - os: linux
+    dist: bionic
+    compiler: gcc
+    env:
+      - QT_BASE=512 USE_CMAKE=true
+
+  # OS X  
+  #- os: osx
+  #  compiler: clang
+  #  env:
+  #   - QT_BASE=511
+  #- os: osx
+  #  compiler: clang
+  #  env:
+  #   - QT_BASE=511 USE_CMAKE=true
   #- os: osx
   #  compiler: clang
   #  env:
@@ -71,11 +96,11 @@ matrix:
   - os: osx
     compiler: clang
     env:
-     - QT_BASE=513
+      - QT_BASE=513
   - os: osx
     compiler: clang
     env:
-    - QT_BASE=513 USE_CMAKE=true
+      - QT_BASE=513 USE_CMAKE=true
 
 before_install:
   - if [ "$QT_BASE" = "56" ]; then sudo add-apt-repository ppa:beineri/opt-qt563-xenial -y; fi
@@ -83,15 +108,17 @@ before_install:
   - if [ "$QT_BASE" = "58" ]; then sudo add-apt-repository ppa:beineri/opt-qt58-xenial -y; fi
   - if [ "$QT_BASE" = "59" ]; then sudo add-apt-repository ppa:beineri/opt-qt595-xenial -y; fi
   - if [ "$QT_BASE" = "510" ]; then sudo add-apt-repository ppa:beineri/opt-qt-5.10.1-xenial -y; fi
-  - if [[ "$QT_BASE" = "511" && "$TRAVIS_OS_NAME" = "linux" ]]; then sudo add-apt-repository ppa:beineri/opt-qt-5.11.3-xenial -y; fi
-  - if [[ "$QT_BASE" = "512" && "$TRAVIS_OS_NAME" = "linux" ]]; then sudo add-apt-repository ppa:beineri/opt-qt-5.12.6-xenial -y; fi
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then
-      sudo apt-get update -qq;
-    else
-      brew update;
+  - if [[ "$QT_BASE" = "511" && "$TRAVIS_OS_NAME" = "linux" ]]; then 
+      sudo add-apt-repository ppa:beineri/opt-qt-5.11.3-$(lsb_release -sc) -y;
+    fi
+  - if [[ "$QT_BASE" = "512" && "$TRAVIS_OS_NAME" = "linux" ]]; then 
+      sudo add-apt-repository ppa:beineri/opt-qt-5.12.6-$(lsb_release -sc) -y;
     fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then
+      sudo apt-get update -qq;
       sudo apt install mesa-common-dev libglu1-mesa-dev;
+    else
+      brew update;
     fi
 
 install:
